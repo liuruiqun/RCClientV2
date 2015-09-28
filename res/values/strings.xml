@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">遥控小精灵</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="hello">欢迎使用!</string>
+    <string name="default_ip">192.168.0.78</string>
+	<string name="default_socket">8888</string>
+	<string name="declare">在此声明!</string>	
+	<string name="startButton">截屏</string>
+	<string name="screen">屏幕监测</string>
+    <string name="movie">电影</string>
+    <string name="PPT">幻灯片</string>
+	<string name="mouse">鼠标</string>
+	<string name="keyboard">DOS</string>
+	<string name="sendbutton">发送</string>
+	<string name="ClearButton">退格</string>
+	<string name="enterbutton">回车</string>
+	<string name="dosButton">发送</string>
+	<string name="iplabal">电脑IP：</string>
+	<string name="socketlabel">端口号：</string>
+	<string name="connectButton">连接</string>
+	<string name="aboutlabel">左手码农</string>
+	<string name="helptitle">使用说明</string>
+	<string name="exit">退出</string>
+	<string name="volumeadd">音量键+设置</string>
+	<string name="volumesub">音量键-设置</string>
+	<string name="helpin">帮助</string>
+	<string name="handmodel">手柄模式</string>
+	<string name="handrightset">右部功能设置</string>
+	<string name="confirm">确认</string>
+	<string name="cancel">取消</string>
+	<string name="exit_message">程序退出</string>
+	<string name="about">关于</string>
+	<string name="reback">返回</string>
+
+</resources>

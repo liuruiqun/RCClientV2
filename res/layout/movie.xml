@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/windows"
+    >
+    
+   
+    
+    
+	    	    
+	    <Button
+	        android:id="@+id/startbutton"
+	        android:layout_width="100dp"
+	        android:layout_height="100dp"
+	        android:layout_centerInParent="true"
+	        android:background="@drawable/startbutton"/>
+	    
+	    <Button
+	        android:id="@+id/volumeupbutton"
+	        android:layout_width="100dp"
+	        android:layout_height="100dp"
+	        android:layout_centerHorizontal="true"
+	        android:layout_above="@id/startbutton"
+	        android:background="@drawable/upbutton" />
+	     
+	    <Button
+	        android:id="@+id/volumedownbutton"
+	        android:layout_width="100dp"
+	        android:layout_height="100dp"
+	        android:layout_centerHorizontal="true"
+	        android:layout_below="@id/startbutton"
+	        android:background="@drawable/downbutton" />
+	
+	    <Button
+	        android:id="@+id/backbutton"
+	        android:layout_width="100dp"
+	        android:layout_height="100dp"
+	        android:layout_centerVertical="true"
+	        android:layout_toLeftOf="@id/startbutton"
+	        android:background="@drawable/backbutton" />
+	
+	    <Button
+	        android:id="@+id/forbutton"
+	        android:layout_width="100dp"
+	        android:layout_height="100dp"
+	        android:layout_centerVertical="true"
+	        android:layout_toRightOf="@id/startbutton"
+	        android:background="@drawable/forwardbutton" />
+
+</RelativeLayout>
+
