@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,12 +29,13 @@ import android.view.View.OnClickListener;
 //import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class PictureActivity extends Activity{	
 	final String FILE_NAME = "picture.png";
 	private Handler messageHandler;
-	private Button startButton;
+	private Button captureButton;
 	ActionBar actionBar;
 	private DatagramSocket socket; 
 	byte[] sendData =  "ACK".getBytes(); 
@@ -43,17 +45,17 @@ public class PictureActivity extends Activity{
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.screen);
+		setContentView(R.layout.picture);
 		actionBar = getActionBar();
 		actionBar.setDisplayShowHomeEnabled(true);
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setTitle(R.string.screen);
+		actionBar.setTitle(R.string.picture);
 		
 		//得到当前线程的Looper实例，由于当前线程是UI线程也可以通过Looper.getMainLooper()得到
         Looper looper = Looper.myLooper();
         //此处甚至可以不需要设置Looper，因为 Handler默认就使用当前线程的Looper
         messageHandler = new MessageHandler(looper);        
-		startButton = (Button) findViewById(R.id.startButton);
+		captureButton = (Button) findViewById(R.id.captureButton);
 		
 		try {
 			socket = new DatagramSocket();
@@ -62,7 +64,7 @@ public class PictureActivity extends Activity{
 			e.printStackTrace();
 		}	
 		
-		startButton.setOnClickListener(new OnClickListener() {
+		captureButton.setOnClickListener(new OnClickListener() {
 			String s = "Start";
 			@Override
 			public void onClick(View arg0) {
@@ -79,7 +81,7 @@ public class PictureActivity extends Activity{
 			Runnable runnable = new Runnable(){
       		  @Override
       		  public void run() {
-      			sendMessage("screen:message," + s);
+      			sendMessage("picture:message," + s);
       		  }
 			};     	     	
 
@@ -271,5 +273,23 @@ public class PictureActivity extends Activity{
 					}
 
 				}).show();
+	}
+	
+	private long exitTime = 0;
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		if( keyCode== KeyEvent.KEYCODE_HOME){
+			return true;
+		} else if( keyCode== KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+			if((System.currentTimeMillis()- exitTime) > 2000){  
+	            Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();                                
+	            exitTime = System.currentTimeMillis();   
+	        } else {
+	            finish();
+	            System.exit(0);
+	        }
+			return true;
+		} 	
+		return super.onKeyDown(keyCode, event);
 	}
 }

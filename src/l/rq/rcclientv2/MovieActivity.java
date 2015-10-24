@@ -11,11 +11,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MovieActivity extends Activity{	
 	private Button startButton;
@@ -23,6 +25,7 @@ public class MovieActivity extends Activity{
 	private Button downButton;
 	private Button leftButton;
 	private Button rightButton;
+	private long exitTime = 0;
 	ActionBar actionBar;
 	//private Button titleBackButton;
 	//private Button titleAddButton;
@@ -204,6 +207,24 @@ public class MovieActivity extends Activity{
 			e.printStackTrace();
 		}
 	}
+	
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		if( keyCode== KeyEvent.KEYCODE_HOME){
+			return true;
+		} else if( keyCode== KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+			if((System.currentTimeMillis()- exitTime) > 2000){  
+	            Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();                                
+	            exitTime = System.currentTimeMillis();   
+	        } else {
+	            finish();
+	            System.exit(0);
+	        }
+			return true;
+		} 	
+		return super.onKeyDown(keyCode, event);
+	}
+	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -2,9 +2,14 @@ package l.rq.rcclientv2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -24,10 +29,15 @@ public class MainActivity extends Activity{
 	
     private String texts[] = null;
     private int images[] = null;
+    ActionBar actionBar;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        actionBar = getActionBar();
+		actionBar.setDisplayShowHomeEnabled(true);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setTitle(R.string.main);
         
         images=new int[]{  
     			//九宫格图片的设置  
@@ -111,7 +121,7 @@ public class MainActivity extends Activity{
                 finish();//结束此Activity，可回收
                 break;
             case R.drawable.icon_picture:
-                startActivity(new Intent(MainActivity.this, MouseActivity.class));//启动另一个Activity
+                startActivity(new Intent(MainActivity.this, PictureActivity.class));//启动另一个Activity
                 finish();//结束此Activity，可回收
                 break;
             }
@@ -119,5 +129,41 @@ public class MainActivity extends Activity{
         }
     }
 	
+    private long exitTime = 0;
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
 
+		if( keyCode== KeyEvent.KEYCODE_HOME){
+			return true;
+		} else if( keyCode== KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+			if((System.currentTimeMillis()- exitTime) > 2000){  
+	            Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();                                
+	            exitTime = System.currentTimeMillis();   
+	        } else {
+	            finish();
+	            System.exit(0);
+	        }
+			return true;
+		} 	
+		return super.onKeyDown(keyCode, event);
+	}
+    
+    
+    /**
+	 * 捕捉菜单事件
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			doBack();
+			return true;
+		}
+		return false;
+	}
+    
+    private void doBack(){
+		 Intent intent = new Intent(MainActivity.this,ConnectActivity.class);
+		 MainActivity.this.startActivity(intent);
+		 this.finish();
+	}
 }

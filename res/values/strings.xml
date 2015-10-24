@@ -7,9 +7,12 @@
     <string name="hello">欢迎使用!</string>
     <string name="default_ip">192.168.0.78</string>
 	<string name="default_socket">8888</string>
-	<string name="declare">在此声明!</string>	
+	<string name="declare">在此声明!</string>
+	<string name="captureButton">拍照</string>	
 	<string name="startButton">截屏</string>
+	<string name="main">遥控小精灵</string>
 	<string name="screen">屏幕监测</string>
+	<string name="picture">拍照</string>
     <string name="movie">电影</string>
     <string name="PPT">幻灯片</string>
 	<string name="mouse">鼠标</string>

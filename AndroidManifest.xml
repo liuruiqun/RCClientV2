@@ -52,10 +52,15 @@
             android:label="@string/app_name"
 			>  
 		</activity>
-		
-		
+				
         <activity 
             android:name="l.rq.rcclientv2.ScreenActivity" 
+            android:label="@string/app_name"
+			>  
+		</activity>
+		
+        <activity 
+            android:name="l.rq.rcclientv2.PictureActivity" 
             android:label="@string/app_name"
 			>  
 		</activity>

@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,7 @@ import android.view.View.OnClickListener;
 //import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class ScreenActivity extends Activity{	
@@ -271,5 +273,23 @@ public class ScreenActivity extends Activity{
 					}
 
 				}).show();
+	}
+	
+	private long exitTime = 0;
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		if( keyCode== KeyEvent.KEYCODE_HOME){
+			return true;
+		} else if( keyCode== KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+			if((System.currentTimeMillis()- exitTime) > 2000){  
+	            Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();                                
+	            exitTime = System.currentTimeMillis();   
+	        } else {
+	            finish();
+	            System.exit(0);
+	        }
+			return true;
+		} 	
+		return super.onKeyDown(keyCode, event);
 	}
 }

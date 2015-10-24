@@ -24,9 +24,7 @@ public class DOSActivity extends Activity {
 	private EditText inputET;
 	private Button dosButton;
 	ActionBar actionBar;
-	//private Button titleBackButton;
-	private String volumedownkey =  "leftButton";
-	private String volumeupkey =  "leftButton";
+	private long exitTime = 0;
 	int [] images = new int [] {
 			R.drawable.windows,
 			R.drawable.screen
@@ -104,29 +102,16 @@ public class DOSActivity extends Activity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-			if(volumedownkey.equals("leftButton"))
-				sendMessage("leftButton:down");
-			else if(volumedownkey.equals("rightButton"))
-				sendMessage("rightButton:down");
-			else
-				sendMessage("keyboard:key,"+volumedownkey+",down");
+		if( keyCode== KeyEvent.KEYCODE_HOME){
 			return true;
-
-		} else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
-
-			if(volumeupkey.equals("leftButton"))
-				sendMessage("leftButton:down");
-			else if(volumeupkey.equals("rightButton"))
-				sendMessage("rightButton:down");
-			else
-				sendMessage("keyboard:key,"+volumeupkey+",down");
-			return true;
-
-		} else if( keyCode== KeyEvent.KEYCODE_HOME){
-			return true;
-		} else if( keyCode== KeyEvent.KEYCODE_BACK){
+		} else if( keyCode== KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+			if((System.currentTimeMillis()- exitTime) > 2000){  
+	            Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();                                
+	            exitTime = System.currentTimeMillis();   
+	        } else {
+	            finish();
+	            System.exit(0);
+	        }
 			return true;
 		} 
 		
@@ -142,34 +127,7 @@ public class DOSActivity extends Activity {
 	        
 	     super.onAttachedToWindow();  
 	 } */
-	
-	
 
-	@Override
-	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-			if(volumedownkey.equals("leftButton"))
-				sendMessage("leftButton:release");
-			else if(volumedownkey.equals("rightButton"))
-				sendMessage("rightButton:release");
-			else
-				sendMessage("keyboard:key,"+volumedownkey+",up");
-			return true;
-
-		} else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
-
-			if(volumeupkey.equals("leftButton"))
-				sendMessage("leftButton:release");
-			else if(volumeupkey.equals("rightButton"))
-				sendMessage("rightButton:release");
-			else
-				sendMessage("keyboard:key,"+volumeupkey+",up");
-			return true;
-
-		} 
-		
-		return super.onKeyUp(keyCode, event);
-	}
 
 	private void sendMessage(String str) {
 		try {
