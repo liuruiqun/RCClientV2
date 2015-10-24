@@ -34,5 +34,7 @@
 	<string name="exit_message">程序退出</string>
 	<string name="about">关于</string>
 	<string name="reback">返回</string>
+	<string name="line_default">------------------------------</string>
+	
 
 </resources>

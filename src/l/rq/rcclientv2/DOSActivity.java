@@ -275,7 +275,7 @@ public class DOSActivity extends Activity {
 			
 	
 	private void doBack(){
-		 Intent intent = new Intent(DOSActivity.this,MouseActivity.class);
+		 Intent intent = new Intent(DOSActivity.this,MainActivity.class);
 		 DOSActivity.this.startActivity(intent);
 		 this.finish();
 	}

@@ -286,7 +286,7 @@ public class MovieActivity extends Activity{
 	}
 	
 	private void doBack(){
-		 Intent intent = new Intent(MovieActivity.this,MouseActivity.class);
+		 Intent intent = new Intent(MovieActivity.this,MainActivity.class);
 		 MovieActivity.this.startActivity(intent);
 		 this.finish();
 	}

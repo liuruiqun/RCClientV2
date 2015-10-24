@@ -331,7 +331,7 @@ public class PPTActivity extends Activity {
 	
 	
 	private void doBack(){
-		 Intent intent = new Intent(PPTActivity.this,MouseActivity.class);
+		 Intent intent = new Intent(PPTActivity.this,MainActivity.class);
 		 PPTActivity.this.startActivity(intent);
 		 this.finish();
 	}

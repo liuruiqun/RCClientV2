@@ -35,10 +35,6 @@ public class ScreenActivity extends Activity{
 	private Handler messageHandler;
 	private Button startButton;
 	ActionBar actionBar;
-	//private Button titleBackButton;
-	//private Button titleAddButton;
-	//private PopMenu popMenu;
-	//private Context context = ScreenActivity.this;
 	private DatagramSocket socket; 
 	byte[] sendData =  "ACK".getBytes(); 
     byte[] buff = new byte[8192];
@@ -228,7 +224,7 @@ public class ScreenActivity extends Activity{
 			
 	
 	private void doBack(){
-		 Intent intent = new Intent(ScreenActivity.this,MouseActivity.class);
+		 Intent intent = new Intent(ScreenActivity.this,MainActivity.class);
 		 ScreenActivity.this.startActivity(intent);
 		 this.finish();
 	}

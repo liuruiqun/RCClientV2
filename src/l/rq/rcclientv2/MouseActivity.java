@@ -519,7 +519,7 @@ public class MouseActivity extends Activity {
 	}
 	
 	private void doBack(){
-		 Intent intent = new Intent(MouseActivity.this,ConnectActivity.class);
+		 Intent intent = new Intent(MouseActivity.this,MainActivity.class);
 		 MouseActivity.this.startActivity(intent);
 		 this.finish();
 	}

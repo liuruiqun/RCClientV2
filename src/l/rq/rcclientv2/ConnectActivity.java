@@ -19,6 +19,8 @@ public class ConnectActivity extends Activity {
     EditText socketET;
     Button button;
     DatagramSocket socket;
+    String ipnum;
+    int socketnum;
     //DatagramSocket socket = null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,12 +29,7 @@ public class ConnectActivity extends Activity {
         ipET = (EditText)findViewById(R.id.IpEditText);
         socketET = (EditText)findViewById(R.id.SocketEditText);
         button = (Button)findViewById(R.id.ConnectButton);
-        
-        String ipnum = ipET.getText().toString(); 
-		int socketnum = Integer.parseInt(socketET.getText().toString());
-		Settings.ipnum =ipnum;
-		Settings.socketnum = socketnum;
-        
+                
         button.setOnClickListener(new OnClickListener() { 
         	@Override 
         	public void onClick(View v) { 
@@ -55,7 +52,12 @@ public class ConnectActivity extends Activity {
         	};
         	
         	private void sendMessage(String str) {
-        		try {     
+        		try {   
+        			ipnum = ipET.getText().toString(); 
+        			socketnum = Integer.parseInt(socketET.getText().toString());
+        			Settings.ipnum =ipnum;
+        			Settings.socketnum = socketnum;
+        			
         			socket =new DatagramSocket();          			
         			InetAddress serverAddress = InetAddress.getByName(Settings.ipnum);
         			byte data[] = str.getBytes();
@@ -79,7 +81,7 @@ public class ConnectActivity extends Activity {
         		    } finally{
         		    	socket.close();
         		    }
-        		    Intent intent = new Intent(ConnectActivity.this,MouseActivity.class);
+        		    Intent intent = new Intent(ConnectActivity.this,MainActivity.class);
         			ConnectActivity.this.startActivity(intent);
         			ConnectActivity.this.finish();
         			Looper.prepare();
